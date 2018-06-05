@@ -8,6 +8,9 @@
     <artifactId>luck</artifactId>
     <packaging>war</packaging>
     <version>1.0.0</version>
+    <build>
+        <finalName>luck</finalName>
+    </build>
 
 
     <dependencies>
