@@ -13,7 +13,7 @@ public class MainController {
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         response.setCharacterEncoding("utf-8");
         if (StringUtils.isEmpty(text)) {
-            text = "spring mvc ¿ªÊ¼";
+            text = "spring mvc å¼€å§‹";
         }
         try {
             response.getWriter().print(text);
