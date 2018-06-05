@@ -14,7 +14,7 @@ public class MainController {
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         response.setCharacterEncoding("utf-8");
         if (StringUtils.isEmpty(text)) {
-            text = "欢迎使用!";
+            text = "看见这个页面的人据说会有好运哦！";
         }
         try {
             response.getWriter().print(text);
