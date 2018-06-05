@@ -14,7 +14,7 @@ public class MainController {
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         response.setCharacterEncoding("utf-8");
         if (StringUtils.isEmpty(text)) {
-            text = "spring mvc 开始";
+            text = "欢迎使用!";
         }
         try {
             response.getWriter().print(text);
