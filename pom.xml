@@ -9,7 +9,7 @@
     <packaging>war</packaging>
     <version>1.0.0</version>
     <build>
-        <finalName>luck</finalName>
+        <finalName>javaluck</finalName>
     </build>
 
 
