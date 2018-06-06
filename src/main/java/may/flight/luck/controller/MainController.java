@@ -9,18 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("main/")
-public class MainController {
+public class MainController extends BaseController {
     @RequestMapping("start.htm")
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
-        response.setCharacterEncoding("utf-8");
-        if (StringUtils.isEmpty(text)) {
-            text = "看见这个页面的人据说会有好运哦！";
-        }
-        try {
-            response.getWriter().print(text);
-        } catch (Exception e) {
-
-        }
+        text = StringUtils.isEmpty(text) ? "据说看到这个页面的人会有好运哦!" : text;
+        print(response, text);
     }
 
 }
