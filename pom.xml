@@ -8,9 +8,6 @@
     <artifactId>luck</artifactId>
     <packaging>war</packaging>
     <version>1.0.0</version>
-    <build>
-        <finalName>javaluck</finalName>
-    </build>
 
     <dependencies>
         <dependency>
@@ -33,7 +30,39 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.6</version>
         </dependency>
-
-
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>development</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>line</id>
+            <properties>
+                <profiles.active>line</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>javaluck</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>dev/*</exclude>
+                    <exclude>line/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/${profiles.active}</directory>
+            </resource>
+        </resources>
+    </build>
 </project>
