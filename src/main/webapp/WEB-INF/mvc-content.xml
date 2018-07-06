@@ -12,4 +12,10 @@
 
     <mvc:annotation-driven />
     <context:component-scan base-package="may.flight.luck.controller" />
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="/error.html" />
+        <property name="warnLogCategory" value="ERROR" />
+    </bean>
+
 </beans>

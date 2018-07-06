@@ -37,7 +37,7 @@ public class MainController extends BaseController {
         print(response, text);
     }
 
-    @RequestMapping("printLog.htm")
+    @RequestMapping("print_params.htm")
     public void printLog(HttpServletRequest request, HttpServletResponse response) {
         Object params =  memcachedClient.get("request_params");
         print(response, JSONObject.toJSONString(params));
