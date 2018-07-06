@@ -2,6 +2,8 @@ package may.flight.luck.controller;
 
 
 import may.flight.luck.service.AllMessageService;
+import may.flight.luck.utils.IpUtil;
+import may.flight.luck.utils.StreamUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,14 +26,17 @@ public class MainController extends BaseController {
 
     @RequestMapping("start.htm")
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
-        logger.error("开始{}", request.getRemoteHost());
+        logger.error("client_ip:{}, request_params:{}, request_body:{}",
+                IpUtil.clientIp(request),
+                request.getParameterMap().toString(),
+                StreamUtil.readRequestInputStream(request));
         text = StringUtils.isEmpty(text) ? "据说看到这个页面的人会有好运哦!" : text;
         print(response, text);
     }
 
    @RequestMapping("rule.htm")
     public void rule(HttpServletRequest request, HttpServletResponse response) {
-       Map<String,String> map = allMessageService.getNameAgeMap();
+       Map<String,String> map = allMessageService.getNameAgeMap(1);
        print(response, map.toString());
    }
 
