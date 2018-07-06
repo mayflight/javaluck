@@ -8,4 +8,5 @@
     <context:annotation-config />
     <context:component-scan base-package="may.flight.luck" />
     <aop:aspectj-autoproxy />
+    <import resource="memcachedContent.xml" />
 </beans>
