@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>log</title>
+</head>
+<body>
+    <p>请求数据</p>
+    <p>$!{log}</p>
+</body>
+</html>
