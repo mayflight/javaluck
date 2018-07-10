@@ -29,6 +29,8 @@ public class MainController extends BaseController {
    @Resource
    private MemcachedClient memcachedClient;
 
+   private volatile boolean isOpen;
+
     @RequestMapping("start.htm")
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         Object[] logParams =  {IpUtil.clientIp(request), QueryStringUtils.getQueryString(request), StreamUtil.readRequestInputStream(request)};
@@ -56,4 +58,19 @@ public class MainController extends BaseController {
         model.addAttribute("log", JSONObject.toJSONString(memcachedClient.get("request_params")));
         return "log";
    }
+
+   @RequestMapping("run_loop.htm")
+   public void runLoop(HttpServletResponse response,Model model) throws Exception{
+        while (isOpen) {
+            Thread.sleep(50000);
+            System.out.println(Thread.currentThread().getName());
+        }
+   }
+
+   @RequestMapping("modify.htm")
+   public void modify(HttpServletResponse response) {
+        isOpen = !isOpen;
+        print(response, String.valueOf(isOpen));
+   }
+
 }
