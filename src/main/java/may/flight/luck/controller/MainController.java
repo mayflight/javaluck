@@ -9,6 +9,7 @@ import net.spy.memcached.MemcachedClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,7 +33,7 @@ public class MainController extends BaseController {
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         Object[] logParams =  {IpUtil.clientIp(request), QueryStringUtils.getQueryString(request), StreamUtil.readRequestInputStream(request)};
         logger.error("client_ip:{}, request_params:{}, request_body:{}", logParams);
-        memcachedClient.set("request_params", 60, logParams);
+        memcachedClient.set("request_params", 600, logParams);
         text = StringUtils.isEmpty(text) ? "据说看到这个页面的人会有好运哦!" : text;
         print(response, text);
     }
@@ -50,4 +51,9 @@ public class MainController extends BaseController {
    }
 
 
+   @RequestMapping("view.htm")
+   public String view(HttpServletRequest request, HttpServletResponse response, Model model) {
+        model.addAttribute("log", JSONObject.toJSONString(memcachedClient.get("request_params")));
+        return "log";
+   }
 }
