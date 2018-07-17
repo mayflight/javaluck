@@ -31,8 +31,15 @@
     </bean>
 
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="defaultErrorView" value="/error.html" />
+        <property name="defaultErrorView" value="error" />
         <property name="warnLogCategory" value="ERROR" />
     </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean class="may.flight.luck.interceptor.AdminInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
