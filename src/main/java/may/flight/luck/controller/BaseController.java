@@ -20,8 +20,6 @@ public class BaseController {
         if (null == response) {
             return;
         }
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
         try {
             response.getWriter().print(text);
         } catch (Exception e) {
