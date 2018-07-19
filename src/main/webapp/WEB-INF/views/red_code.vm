@@ -5,14 +5,19 @@
     <title>领支付宝红包</title>
 </head>
 <body>
-<h1>请用手机浏览器打开页面，领取支付宝红包</h1>
-<a href=$!{code} >
-    <h2>点击领取支付宝红包</h2>
-</a>
+<h1>
+    <a href="$!{code}" >
+        点击领取支付宝红包
+    </a>
+</h1>
+<h2>
+    如无法打开支付宝， 请用手机浏览器打开页面，领取支付宝红包
+</h2>
+
 </body>
-<script>
+<script type="text/javascript">
     window.onload = function () {
-        window.location.href = $!{code}
+        window.location.href = "$!{code}"
     }
 </script>
 </html>
