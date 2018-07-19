@@ -6,7 +6,7 @@
 </head>
 <body onload="click()">
 <h1>
-    <a href="$!{code}" >
+    <a href="$!{code}" style="size: 25px">
         点击领取支付宝红包
     </a>
 </h1>
@@ -18,7 +18,7 @@
 </body>
 <script type="text/javascript">
     function click() {
-        window.location.href = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x03418odvudezogjca9ac"
+        window.location.href = "$!{code}"
     }
 </script>
 </html>
