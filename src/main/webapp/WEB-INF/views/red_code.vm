@@ -17,6 +17,7 @@
 </body>
 <script type="text/javascript">
     window.onload = function () {
+        alert("领红包啦")
         window.location.href = "$!{code}"
     }
 </script>
