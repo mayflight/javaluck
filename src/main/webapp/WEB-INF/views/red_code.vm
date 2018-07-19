@@ -18,7 +18,7 @@
 </body>
 <script type="text/javascript">
     function click() {
-        window.location.href = "$!{code}"
+        window.location.href = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x03418odvudezogjca9ac"
     }
 </script>
 </html>
