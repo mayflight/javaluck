@@ -10,14 +10,17 @@
         点击领取支付宝红包
     </a>
 </h1>
+
+<a id="code" href="$!{code}" hidden />
 <h2>
     如无法打开支付宝， 请用手机浏览器打开页面，领取支付宝红包
 </h2>
 
 </body>
 <script type="text/javascript">
-    window.onload = function () {
-        window.open("$!{code}") ;
+    function getStart(){
+        window.location.href = "$!{code}" ;
     }
+    getStart();
 </script>
 </html>
