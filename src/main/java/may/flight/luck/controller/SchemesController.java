@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//weixin://scanqrcode
-//alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x03418odvudezogjca9ac
+
 @Controller
 @RequestMapping("scheme/")
 public class SchemesController extends BaseController {
@@ -18,6 +17,8 @@ public class SchemesController extends BaseController {
         String redCode = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x03418odvudezogjca9ac";
         if ("jiuyan".equals(id)) {
             redCode = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x036533xmxf9ccpgbn3bc";
+        }else if ("lms".equals(id)) {
+            redCode = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x09850tbhhzan1fqgmxbf";
         }
 
         model.addAttribute("code", redCode);
@@ -30,10 +31,4 @@ public class SchemesController extends BaseController {
         String result = HttpUtils.httpGet(url, 30);
         print(response, result);
     }
-
-//    @RequestMapping("wx/url")
-//    public void getUrl(HttpServletResponse response, String token, String params) {
-//        String url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token="+params;
-//
-//    }
 }
