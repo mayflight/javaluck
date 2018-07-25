@@ -2,23 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>领支付宝红包</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击领红包啦</title>
+    <style>
+        *{
+            margin: 0px;
+            padding:0px;
+        }
+        #main{
+            background: linear-gradient(-129deg, rgb(51, 94, 204) 100%, rgb(34, 72, 168) 100%);
+            margin: 0rem auto;
+            overflow: hidden;
+            padding-bottom: 90px;
+        }
+        .title1{
+            text-align: center;
+            color:#fff;
+            font-size: 30px;
+            margin: 73px auto;
+        }
+        .inner{
+            background: #ec6969;
+            width: 90%;
+            margin: 0px 5%;
+            border: none;
+            text-align: center;
+            height: 460px;
+            overflow: hidden;
+        }
+        .inner-1{
+            margin: 10px;
+            border: 1px solid #918a8a;
+            height: 438px;
+            color: #fff;
+            font-size: 16px;
+            padding-top: 80px;
+        }
+        #btn{
+            height: 46px;
+            line-height: 46px;
+            width: 200px;
+            background-image: -webkit-linear-gradient(top,#ffd098,#ffc485 100%,#f5b567 0);
+            background-image: linear-gradient(-180deg,#ffd098,#ffc485 100%,#f5b567 0);
+            box-shadow: 0 0.02rem 0.22rem 0 rgba(101,74,30,.16), inset 0 0.02rem 0 0 hsla(0,0%,100%,.16);
+            border-radius: 1px;
+            font-weight: 700;
+            color: #952322;
+            border: none;
+            font-size: 16px;
+            margin-top: 100px;
+            display:inline-block;
+            text-decoration: none;
+        }
+        span{
+            font-size: 40px;
+        }
+    </style>
 </head>
 <body onload="click()">
-<h1>
-    <a href="$!{code}" style="size: 25px">
-        点击领取支付宝红包
-    </a>
-</h1>
-<h2>
-    如无法打开支付宝， 请用手机浏览器打开页面，领取支付宝红包
-</h2>
-
-
+<div id="main">
+    <div class="title1">支付就用支付宝</div>
+    <div class="inner">
+        <div class="inner-1">
+            <div>最高可领取<span>99</span>元哦</div>
+            <div style="padding:5px;">记得每天都来领</div>
+            <a id="btn" href="$!{code}">点击可领取红包</a>
+        </div>
+    </div>
+</div>
 </body>
+
+
 <script type="text/javascript">
     function click() {
         window.location.href = "$!{code}"
     }
 </script>
+
 </html>
