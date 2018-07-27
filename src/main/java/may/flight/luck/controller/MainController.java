@@ -36,7 +36,7 @@ public class MainController extends BaseController {
         Object[] logParams =  {IpUtil.clientIp(request), QueryStringUtils.getQueryString(request), StreamUtil.readRequestInputStream(request)};
         logger.error("client_ip:{}, request_params:{}, request_body:{}", logParams);
         memcachedClient.set("request_params", 600, logParams);
-        text = StringUtils.isEmpty(text) ? "finished" : text;
+        text = StringUtils.isEmpty(text) ? "success" : text;
         print(response, text);
     }
 
