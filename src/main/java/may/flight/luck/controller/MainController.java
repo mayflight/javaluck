@@ -1,6 +1,7 @@
 package may.flight.luck.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import may.flight.luck.component.RedisUtils;
 import may.flight.luck.service.AllMessageService;
 import may.flight.luck.utils.IpUtil;
 import may.flight.luck.utils.QueryStringUtils;
@@ -8,6 +9,7 @@ import may.flight.luck.utils.StreamUtil;
 import net.spy.memcached.MemcachedClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -29,21 +31,36 @@ public class MainController extends BaseController {
    @Resource
    private MemcachedClient memcachedClient;
 
-   private volatile boolean isOpen;
+
+   private RedisUtils redisUtils;
+
+    public RedisUtils getRedisUtils() {
+        return redisUtils;
+    }
+
+    @Autowired
+    public void setRedisUtils(RedisUtils redisUtils) {
+        this.redisUtils = redisUtils;
+    }
+
+    private volatile boolean isOpen;
 
     @RequestMapping("start.htm")
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         Object[] logParams =  {IpUtil.clientIp(request), QueryStringUtils.getQueryString(request), StreamUtil.readRequestInputStream(request)};
         logger.error("client_ip:{}, request_params:{}, request_body:{}", logParams);
         memcachedClient.set("request_params", 600, logParams);
+        redisUtils.setValue("request_params", JSONObject.toJSONString(logParams));
         text = StringUtils.isEmpty(text) ? "success" : text;
         print(response, text);
     }
 
+
     @RequestMapping("print_params.htm")
     public void printLog(HttpServletRequest request, HttpServletResponse response) {
         Object params =  memcachedClient.get("request_params");
-        print(response, JSONObject.toJSONString(params));
+
+        print(response, JSONObject.toJSONString(params) + redisUtils.getStringValue("request_params"));
     }
 
    @RequestMapping("rule.htm")

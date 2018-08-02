@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:a="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"
+          p:maxIdle="20" p:maxTotal="100" p:maxWaitMillis="10000" p:testOnBorrow="false" />
+    <!--https://docs.spring.io/spring-data/data-redis/docs/current/reference/html/#new-in-2.0.0-->
+
+    <bean id="jedisConnectFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+    p:password="yeyadong1013" p:hostName="118.25.87.65" p:poolConfig-ref="jedisPoolConfig"/>
+
+    <bean id="redisTemplate"
+          class="org.springframework.data.redis.core.RedisTemplate"
+          p:connection-factory-ref="jedisConnectFactory"/>
+</beans>
