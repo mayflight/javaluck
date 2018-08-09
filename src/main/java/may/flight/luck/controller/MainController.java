@@ -19,6 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 @Controller
@@ -28,8 +29,8 @@ public class MainController extends BaseController {
    private static Logger logger = LoggerFactory.getLogger(MainController.class);
    @Resource
    private AllMessageService allMessageService;
-   @Resource
-   private MemcachedClient memcachedClient;
+//   @Resource
+//   private MemcachedClient memcachedClient;
 
 
    private RedisUtils redisUtils;
@@ -49,8 +50,7 @@ public class MainController extends BaseController {
     public void start(HttpServletRequest request, HttpServletResponse response, String text) {
         Object[] logParams =  {IpUtil.clientIp(request), QueryStringUtils.getQueryString(request), StreamUtil.readRequestInputStream(request)};
         logger.error("client_ip:{}, request_params:{}, request_body:{}", logParams);
-        memcachedClient.set("request_params", 600, logParams);
-        redisUtils.setValue("request_params", JSONObject.toJSONString(logParams));
+        redisUtils.setValue("request_params", logParams, 1, TimeUnit.DAYS);
         text = StringUtils.isEmpty(text) ? "success" : text;
         print(response, text);
     }
@@ -58,9 +58,7 @@ public class MainController extends BaseController {
 
     @RequestMapping("print_params.htm")
     public void printLog(HttpServletRequest request, HttpServletResponse response) {
-        Object params =  memcachedClient.get("request_params");
-
-        print(response, JSONObject.toJSONString(params) + redisUtils.getStringValue("request_params"));
+        print(response, JSONObject.toJSONString(redisUtils.getValue("request_params")));
     }
 
    @RequestMapping("rule.htm")
@@ -72,7 +70,7 @@ public class MainController extends BaseController {
 
    @RequestMapping("view.htm")
    public String view(HttpServletRequest request, HttpServletResponse response, Model model) {
-        model.addAttribute("log", JSONObject.toJSONString(memcachedClient.get("request_params")));
+        model.addAttribute("log", JSONObject.toJSONString(redisUtils.getValue("request_params")));
         return "log";
    }
 
