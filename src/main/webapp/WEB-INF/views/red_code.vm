@@ -59,14 +59,14 @@
         }
     </style>
 </head>
-<body onload="click()">
+<body>
 <div id="main">
     <div class="title1">支付就用支付宝</div>
     <div class="inner">
         <div class="inner-1">
             <div>最高可领取<span>99</span>元哦</div>
             <div style="padding:5px;">记得每天都来领</div>
-            <a id="btn" href="$!{code}">点击可领取红包</a>
+            <a href="$!{code}"><span id="btn" style="font-size: 16px">点击可领红包</span></a>
         </div>
     </div>
 </div>
@@ -74,9 +74,7 @@
 
 
 <script type="text/javascript">
-    function click() {
-        window.location.href = "$!{code}"
-    }
+    document.getElementById("btn").click();
 </script>
 
 </html>
