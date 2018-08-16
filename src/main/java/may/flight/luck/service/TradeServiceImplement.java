@@ -22,7 +22,6 @@ public class TradeServiceImplement implements TradeService {
             return;
         }
         tradeDAO.insert(trade);
-        throw new RuntimeException("错误");
     }
 
     @Override
