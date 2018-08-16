@@ -2,11 +2,12 @@ package may.flight.luck.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import may.flight.luck.component.RedisUtils;
+import may.flight.luck.entity.Trade;
 import may.flight.luck.service.AllMessageService;
+import may.flight.luck.service.TradeService;
 import may.flight.luck.utils.IpUtil;
 import may.flight.luck.utils.QueryStringUtils;
 import may.flight.luck.utils.StreamUtil;
-import net.spy.memcached.MemcachedClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -29,15 +32,14 @@ public class MainController extends BaseController {
    private static Logger logger = LoggerFactory.getLogger(MainController.class);
    @Resource
    private AllMessageService allMessageService;
+   @Resource
+   private TradeService tradeService;
 //   @Resource
 //   private MemcachedClient memcachedClient;
 
 
-   private RedisUtils redisUtils;
+    private RedisUtils redisUtils;
 
-    public RedisUtils getRedisUtils() {
-        return redisUtils;
-    }
 
     @Autowired
     public void setRedisUtils(RedisUtils redisUtils) {
@@ -88,4 +90,26 @@ public class MainController extends BaseController {
         print(response, String.valueOf(isOpen));
    }
 
+   @RequestMapping("trade/insert.htm")
+   public void tradeInsert(HttpServletRequest request, HttpServletResponse response) {
+       Trade trade = new Trade();
+       trade.setAmount(new BigDecimal(100));
+       trade.setBuyId("ye");
+       trade.setMerchantId("001");
+       trade.setOrderNo("1q7h73u83u833d32");
+       tradeService.insertOrder(trade);
+       print(response, "success");
+   }
+
+   @RequestMapping(value = "trade/select.htm")
+   @ResponseBody
+   public Trade selectTrade(HttpServletResponse response) {
+       return tradeService.selectOrderByOrder("1q7h73u83u833d32");
+   }
+
+   @RequestMapping("trade/delete.htm")
+    public void deleteTrade(int id,HttpServletResponse response) {
+        tradeService.delete(id);
+        print(response, "success");
+   }
 }

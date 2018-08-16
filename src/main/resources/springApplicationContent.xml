@@ -10,5 +10,5 @@
     <aop:aspectj-autoproxy />
     <import resource="memcachedContent.xml" />
     <import resource="redis.xml" />
-
+    <import resource="mybatisContext.xml" />
 </beans>
