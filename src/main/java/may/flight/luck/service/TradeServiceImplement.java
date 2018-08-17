@@ -39,8 +39,8 @@ public class TradeServiceImplement implements TradeService {
     }
 
     @Override
-    public void delete(int id) {
-        if (id <= 0) {
+    public void delete(Integer id) {
+        if (null == id || id <= 0) {
             return;
         }
         tradeDAO.deleteByPrimaryKey(id);

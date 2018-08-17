@@ -107,8 +107,8 @@ public class MainController extends BaseController {
    }
 
    @RequestMapping("trade/delete.htm")
-    public void deleteTrade(int id,HttpServletResponse response) {
-        tradeService.delete(id);
+    public void deleteTrade(Integer key,HttpServletResponse response) {
+        tradeService.delete(key);
         print(response, "success");
    }
 }

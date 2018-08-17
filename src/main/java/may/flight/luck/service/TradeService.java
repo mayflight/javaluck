@@ -5,5 +5,5 @@ import may.flight.luck.entity.Trade;
 public interface TradeService {
     void insertOrder(Trade order);
     Trade selectOrderByOrder(String orderId);
-    void delete(int id);
+    void delete(Integer id);
 }
