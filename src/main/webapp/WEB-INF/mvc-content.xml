@@ -10,7 +10,18 @@
 	        http://www.springframework.org/schema/mvc
 			http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven >
+        <mvc:message-converters>
+            <bean class="may.flight.luck.config.JsonBodyHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                        <value>text/html</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <context:component-scan base-package="may.flight.luck.controller" />
 
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
