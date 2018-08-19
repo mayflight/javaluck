@@ -1,27 +1,31 @@
 package may.flight.luck.controller;
 
+import may.flight.luck.service.SchemeUrlService;
 import may.flight.luck.tools.HttpUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("scheme/")
 public class SchemesController extends BaseController {
+
+    @Resource
+    private SchemeUrlService schemeUrlService;
+
     @RequestMapping("{id}/red_code.htm")
     public String redCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String id, Model model) {
-        String redCode = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x03418odvudezogjca9ac";
-        if ("jiuyan".equals(id)) {
-            redCode = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x036533xmxf9ccpgbn3bc";
-        }else if ("lms".equals(id)) {
-            redCode = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/c1x09850tbhhzan1fqgmxbf";
+        String url = schemeUrlService.selectUrl(id, 1);
+        if (StringUtils.isBlank(url)) {
+            url = schemeUrlService.selectUrl("admin", 1);
         }
-
-        model.addAttribute("code", redCode);
+        model.addAttribute("code", url);
         return "red_code";
     }
 
