@@ -26,4 +26,16 @@ public class SchemeUrlImplement implements SchemeUrlService{
         if (CollectionUtils.isEmpty(schemeUrlList)) return null;
         return schemeUrlList.get(0).getUrl();
     }
+
+    @Override
+    public String selectUrlByPrimaryKey(int key) {
+        if (key <= 0) {
+            return null;
+        }
+        SchemeUrl schemeUrl = schemeUrlDAO.selectByPrimaryKey(key);
+        if (null == schemeUrl) {
+            return null;
+        }
+        return schemeUrl.getUrl();
+    }
 }

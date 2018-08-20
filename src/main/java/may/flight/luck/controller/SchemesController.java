@@ -23,7 +23,7 @@ public class SchemesController extends BaseController {
     public String redCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String id, Model model) {
         String url = schemeUrlService.selectUrl(id, 1);
         if (StringUtils.isBlank(url)) {
-            url = schemeUrlService.selectUrl("admin", 1);
+            url = schemeUrlService.selectUrlByPrimaryKey(1);
         }
         model.addAttribute("code", url);
         return "red_code";
@@ -35,4 +35,5 @@ public class SchemesController extends BaseController {
         String result = HttpUtils.httpGet(url, 30);
         print(response, result);
     }
+
 }
