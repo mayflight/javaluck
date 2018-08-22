@@ -2,6 +2,7 @@ package may.flight.luck.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import may.flight.luck.component.RedisUtils;
+import may.flight.luck.entity.SchemeUrl;
 import may.flight.luck.entity.Trade;
 import may.flight.luck.service.AllMessageService;
 import may.flight.luck.service.TradeService;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
@@ -103,8 +105,14 @@ public class MainController extends BaseController {
    @RequestMapping(value = "trade/select.htm")
    @ResponseBody
    public Trade selectTrade(HttpServletResponse response) {
-       return tradeService.selectOrderByOrder("1q7h73u83u833d32");
+        return tradeService.selectOrderByOrder("1q7h73u83u833d32");
    }
+
+    @RequestMapping(value = "scheme_url/insert.htm")
+    @ResponseBody
+    public SchemeUrl insertScheme(HttpServletResponse response, @RequestBody SchemeUrl schemeUrl) {
+        return schemeUrl;
+    }
 
    @RequestMapping("trade/delete.htm")
     public void deleteTrade(Integer key,HttpServletResponse response) {
