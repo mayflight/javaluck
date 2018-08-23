@@ -1,5 +1,6 @@
 package may.flight.luck.component;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,8 @@ public class RedisUtils {
    private RedisTemplate redisTemplate;
 
    public String getStringValue(String key) {
-       return String.valueOf(redisTemplate.opsForValue().get(key));
+       Object object = redisTemplate.opsForValue().get(key);
+       return null == object ? null : String.valueOf(object);
    }
 
    public <K> Object getValue(K key) {
@@ -27,4 +29,8 @@ public class RedisUtils {
        redisTemplate.opsForValue().set(key, value, timeOut, timeUnit);
    }
 
+   @SuppressWarnings("unchecked")
+   public <K> void invalid(K key) {
+       redisTemplate.delete(key);
+   }
 }

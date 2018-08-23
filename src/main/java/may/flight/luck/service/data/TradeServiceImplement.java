@@ -1,4 +1,4 @@
-package may.flight.luck.service;
+package may.flight.luck.service.data;
 
 import may.flight.luck.dao.TradeDAO;
 import may.flight.luck.entity.Trade;

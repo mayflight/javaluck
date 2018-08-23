@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import may.flight.luck.component.RedisUtils;
 import may.flight.luck.entity.Trade;
 import may.flight.luck.service.AllMessageService;
-import may.flight.luck.service.TradeService;
+import may.flight.luck.service.data.TradeService;
 import may.flight.luck.utils.IpUtil;
 import may.flight.luck.utils.QueryStringUtils;
 import may.flight.luck.utils.StreamUtil;

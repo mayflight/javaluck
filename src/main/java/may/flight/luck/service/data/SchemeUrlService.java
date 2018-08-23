@@ -1,4 +1,4 @@
-package may.flight.luck.service;
+package may.flight.luck.service.data;
 
 public interface SchemeUrlService {
     String selectUrl(String ownerId, int type);
