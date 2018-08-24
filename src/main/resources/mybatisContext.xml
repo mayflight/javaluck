@@ -33,7 +33,7 @@
         </tx:attributes>
     </tx:advice>
     <aop:config>
-        <aop:pointcut id="transactionPointCut" expression="execution( * may.flight.luck.service..*.*(..))" />
+        <aop:pointcut id="transactionPointCut" expression="execution( * may.flight.luck.service.data..*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointCut" />
     </aop:config>
 </beans>

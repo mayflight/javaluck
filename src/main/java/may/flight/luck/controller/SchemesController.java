@@ -1,6 +1,7 @@
 package may.flight.luck.controller;
 
-import may.flight.luck.service.SchemeUrlService;
+import may.flight.luck.component.cache.SchemeCache;
+import may.flight.luck.service.data.SchemeUrlService;
 import may.flight.luck.tools.HttpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 public class SchemesController extends BaseController {
 
     @Resource
-    private SchemeUrlService schemeUrlService;
+    private SchemeCache schemeCache;
 
     @RequestMapping("{id}/red_code.htm")
     public String redCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String id, Model model) {
-        String url = schemeUrlService.selectUrl(id, 1);
-        if (StringUtils.isBlank(url)) {
-            url = schemeUrlService.selectUrlByPrimaryKey(1);
-        }
+        String url = schemeCache.getRedCodeScheme(id);
         model.addAttribute("code", url);
         return "red_code";
     }
@@ -35,5 +33,6 @@ public class SchemesController extends BaseController {
         String result = HttpUtils.httpGet(url, 30);
         print(response, result);
     }
+
 
 }

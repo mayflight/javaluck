@@ -1,4 +1,4 @@
-package may.flight.luck.service;
+package may.flight.luck.service.data;
 
 import may.flight.luck.dao.SchemeUrlDAO;
 import may.flight.luck.entity.SchemeUrl;
