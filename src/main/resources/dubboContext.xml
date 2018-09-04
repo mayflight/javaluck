@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="gb2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   		http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 应用信息，用于计算依赖关系 -->
+    <dubbo:application name="java-luck"  />
+
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://118.25.87.65:2181?backup=118.25.87.65:2182,118.25.87.65:2183" />
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!--引入的接口-->
+    <dubbo:reference id="yyPayService" interface="com.yadong.ye.dubbo.YYPayService" check="false" />
+
+
+</beans>
