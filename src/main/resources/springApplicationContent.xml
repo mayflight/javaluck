@@ -11,4 +11,5 @@
     <import resource="memcachedContent.xml" />
     <import resource="redis.xml" />
     <import resource="mybatisContext.xml" />
+    <import resource="dubboContext.xml" />
 </beans>

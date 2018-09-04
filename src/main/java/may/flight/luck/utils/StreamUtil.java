@@ -1,6 +1,4 @@
 package may.flight.luck.utils;
-
-import may.flight.luck.controller.MainController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;

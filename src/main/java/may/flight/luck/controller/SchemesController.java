@@ -16,10 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("scheme/")
 public class SchemesController extends BaseController {
-
     @Resource
     private SchemeCache schemeCache;
-
+//alipays://platformapi/startApp?saId=10000011&url=https://qr.alipay.com/c1x036533xmxf9ccpgbn3bc
     @RequestMapping("{id}/red_code.htm")
     public String redCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String id, Model model) {
         String url = schemeCache.getRedCodeScheme(id);

@@ -1,6 +1,8 @@
 package may.flight.luck.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yadong.ye.bean.Order;
+import com.yadong.ye.dubbo.YYPayService;
 import may.flight.luck.component.RedisUtils;
 import may.flight.luck.entity.SchemeUrl;
 import may.flight.luck.entity.Trade;
@@ -37,7 +39,8 @@ public class MainController extends BaseController {
    private TradeService tradeService;
 //   @Resource
 //   private MemcachedClient memcachedClient;
-
+    @Resource
+    private YYPayService yyPayService;
 
     private RedisUtils redisUtils;
 
@@ -114,9 +117,14 @@ public class MainController extends BaseController {
         return schemeUrl;
     }
 
-   @RequestMapping("trade/delete.htm")
+    @RequestMapping("trade/delete.htm")
     public void deleteTrade(Integer key,HttpServletResponse response) {
         tradeService.delete(key);
         print(response, "success");
-   }
+    }
+
+    @RequestMapping("dubbo.htm")
+    public Object dubbo() {
+        return yyPayService.dealOrder(new Order());
+    }
 }
