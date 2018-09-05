@@ -14,7 +14,7 @@
     <dubbo:protocol name="dubbo" port="20880" />
 
     <!--引入的接口-->
-    <dubbo:reference id="yyPayService" interface="com.yadong.ye.dubbo.YYPayService" check="false" />
+    <dubbo:reference id="yyPayService" interface="com.yadong.ye.dubbo.YyPayService" check="false" />
 
 
 </beans>

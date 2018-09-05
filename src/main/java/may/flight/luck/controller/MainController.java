@@ -1,8 +1,7 @@
 package may.flight.luck.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yadong.ye.bean.Order;
-import com.yadong.ye.dubbo.YYPayService;
+import com.yadong.ye.dubbo.YyPayService;
 import may.flight.luck.component.RedisUtils;
 import may.flight.luck.entity.SchemeUrl;
 import may.flight.luck.entity.Trade;
@@ -41,7 +40,7 @@ public class MainController extends BaseController {
 //   private MemcachedClient memcachedClient;
 
     @Resource
-    private YYPayService yyPayService;
+    private YyPayService yyPayService;
 
     private RedisUtils redisUtils;
 
