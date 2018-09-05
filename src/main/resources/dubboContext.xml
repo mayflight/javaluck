@@ -8,7 +8,7 @@
     <dubbo:application name="java-luck"  />
 
     <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <dubbo:registry address="zookeeper://118.25.87.65:2181?backup=118.25.87.65:2182,118.25.87.65:2183" />
+    <dubbo:registry address="zookeeper://118.25.87.65:2181?backup=118.25.87.65:2182,118.25.87.65:2183" client="zkclient" />
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />

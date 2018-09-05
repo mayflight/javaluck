@@ -39,6 +39,7 @@ public class MainController extends BaseController {
    private TradeService tradeService;
 //   @Resource
 //   private MemcachedClient memcachedClient;
+
     @Resource
     private YYPayService yyPayService;
 
@@ -124,7 +125,8 @@ public class MainController extends BaseController {
     }
 
     @RequestMapping("dubbo.htm")
+    @ResponseBody
     public Object dubbo() {
-        return yyPayService.dealOrder(new Order());
+        return yyPayService.dealOrder(null);
     }
 }
