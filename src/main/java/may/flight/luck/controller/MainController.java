@@ -1,6 +1,9 @@
 package may.flight.luck.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yadong.ye.bean.BaseResult;
+import com.yadong.ye.bean.MailDetailData;
+import com.yadong.ye.dubbo.MailSendService;
 import com.yadong.ye.dubbo.YyPayService;
 import may.flight.luck.component.RedisUtils;
 import may.flight.luck.entity.SchemeUrl;
@@ -38,6 +41,8 @@ public class MainController extends BaseController {
    private TradeService tradeService;
 //   @Resource
 //   private MemcachedClient memcachedClient;
+    @Resource
+    private MailSendService mailSendService;
 
     @Resource
     private YyPayService yyPayService;
@@ -127,5 +132,11 @@ public class MainController extends BaseController {
     @ResponseBody
     public Object dubbo() {
         return yyPayService.dealOrder(null);
+    }
+
+    @RequestMapping("mail/send.htm")
+    @ResponseBody
+    public BaseResult sendMail(MailDetailData data) {
+       return mailSendService.sendSimpleMail(data);
     }
 }

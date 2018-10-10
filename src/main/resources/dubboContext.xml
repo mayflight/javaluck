@@ -16,5 +16,7 @@
     <!--引入的接口-->
     <dubbo:reference id="yyPayService" interface="com.yadong.ye.dubbo.YyPayService" check="false" />
 
+    <dubbo:reference interface="com.yadong.ye.dubbo.MailSendService" id="mailSendService" check="false" />
+
 
 </beans>
