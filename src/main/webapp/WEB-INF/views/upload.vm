@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+</head>
+<body>
+<h2>文件上传</h2>
+<form action="/admin/upload.htm" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="password">密码</label>
+        <input type="text" id="password" name="token"/>
+    </div>
+    <div>
+        <label for="upload">文件上传</label>
+        <input type="file" id="upload" name="file"/>
+    </div>
+    <div>
+        <input type="submit" value="上传文件" />
+    </div>
+</form>
+</body>
+</html>

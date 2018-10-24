@@ -139,4 +139,8 @@ public class MainController extends BaseController {
     public BaseResult sendMail(MailDetailData data) {
        return mailSendService.sendSimpleMail(data);
     }
+    @RequestMapping("upload.htm")
+    public String upload() {
+        return "upload";
+    }
 }
