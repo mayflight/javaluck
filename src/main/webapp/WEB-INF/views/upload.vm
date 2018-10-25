@@ -12,6 +12,10 @@
         <input type="text" id="password" name="token"/>
     </div>
     <div>
+        <label fo="mail">邮件地址（用于接收文件地址）</label>
+        <input type="text" name="mail" id="mail" />
+    </div>
+    <div>
         <label for="upload">文件上传</label>
         <input type="file" id="upload" name="file"/>
     </div>
