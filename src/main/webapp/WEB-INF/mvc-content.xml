@@ -41,7 +41,7 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityToolboxView" />
     </bean>
 
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <bean class="may.flight.luck.handler.CustomExceptionResolver">
         <property name="defaultErrorView" value="error" />
         <property name="warnLogCategory" value="ERROR" />
     </bean>
