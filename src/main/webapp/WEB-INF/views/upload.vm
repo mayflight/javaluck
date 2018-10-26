@@ -4,22 +4,33 @@
     <meta charset="UTF-8">
     <title>upload</title>
 </head>
+<style>
+.buttom {
+    margin-bottom: 3rem;
+    align-content: center;
+    margin-left: 3rem;
+}
+</style>
 <body>
 <h2>文件上传</h2>
 <form action="/admin/upload.htm" method="post" enctype="multipart/form-data">
-    <div>
+    <div class="buttom">
+        <label for="userId">用户id</label>
+        <input type="text" id="userId" name="userId" />
+    </div>
+    <div class="buttom">
         <label for="password">密码</label>
         <input type="text" id="password" name="token"/>
     </div>
-    <div>
+    <div class="buttom">
         <label fo="mail">邮件地址（用于接收文件地址）</label>
         <input type="text" name="mail" id="mail" />
     </div>
-    <div>
+    <div class="buttom">
         <label for="upload">文件上传</label>
         <input type="file" id="upload" name="file"/>
     </div>
-    <div>
+    <div class="buttom">
         <input type="submit" value="上传文件" />
     </div>
 </form>

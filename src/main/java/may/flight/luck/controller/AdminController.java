@@ -44,14 +44,17 @@ public class AdminController extends BaseController{
 
     @RequestMapping("upload.htm")
     @ResponseBody
-    public String upload(@RequestParam MultipartFile file, String token, String mail) {
+    public String upload(@RequestParam MultipartFile file, String token, String mail, String userId) {
         if (!StringUtils.equals(password, token)) {
             return "密码错误";
         }
         if (null == file || file.isEmpty()) {
             return "file is null";
         }
-        String name = FileUtils.getNewFileName(DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"), file);
+        if (StringUtils.isBlank(userId)) {
+            return "userId is null";
+        }
+        String name = FileUtils.getNewFileName(userId + "_" + DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"), file);
         if (StringUtils.isBlank(name)) {
             return "file name is null";
         }
