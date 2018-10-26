@@ -27,13 +27,19 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         logger.error("custom_error", ex);
+        logger.error("mail="+mail);
         MailDetailData detailData = new MailDetailData();
         detailData.setSubject(ex.getLocalizedMessage());
         detailData.setContent(JSON.toJSONString(ex.getStackTrace()));
-        detailData.setReceiveMailAccount("2454611074@qq.com");
+        detailData.setReceiveMailAccount(mail);
         BaseResult result = mailSendService.sendSimpleMail(detailData);
         ModelAndView view = super.resolveException(request, response, handler, ex);
-        view.addObject("error", result.getMessage() +"||"+ ex.getLocalizedMessage());
+        if (result != null && result.getCode() != 0) {
+            view.addObject("error", "send mail error:"+result.getMessage() +";;"+ ex.getLocalizedMessage());
+        }else {
+            view.addObject("error",  ex.getLocalizedMessage());
+        }
+
         return view;
     }
 }
