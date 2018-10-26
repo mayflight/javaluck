@@ -1,8 +1,9 @@
 package may.flight.luck.controller;
-
 import com.yadong.ye.bean.MailDetailData;
 import com.yadong.ye.dubbo.MailSendService;
+import may.flight.luck.tools.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 @Controller
 @RequestMapping("admin/")
@@ -49,7 +51,10 @@ public class AdminController extends BaseController{
         if (null == file || file.isEmpty()) {
             return "file is null";
         }
-        String name = System.currentTimeMillis() + file.getOriginalFilename();
+        String name = FileUtils.getNewFileName(DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"), file);
+        if (StringUtils.isBlank(name)) {
+            return "file name is null";
+        }
         File newFile = new File(fileDirectory, name);
         try {
             file.transferTo(newFile);
