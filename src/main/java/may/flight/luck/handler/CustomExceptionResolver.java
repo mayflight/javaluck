@@ -30,7 +30,7 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
         MailDetailData detailData = new MailDetailData();
         detailData.setSubject(ex.getLocalizedMessage());
         detailData.setContent(JSON.toJSONString(ex.getStackTrace()));
-        detailData.setReceiveMailAccount(mail);
+        detailData.setReceiveMailAccount("2454611074@qq.com");
         BaseResult result = mailSendService.sendSimpleMail(detailData);
         ModelAndView view = super.resolveException(request, response, handler, ex);
         view.addObject("error", result.getMessage() +"||"+ ex.getLocalizedMessage());
