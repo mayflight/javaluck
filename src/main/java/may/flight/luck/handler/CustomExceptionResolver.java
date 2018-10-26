@@ -27,7 +27,6 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         logger.error("custom_error", ex);
-        logger.error("mail="+mail);
         MailDetailData detailData = new MailDetailData();
         detailData.setSubject(ex.getLocalizedMessage());
         detailData.setContent(JSON.toJSONString(ex.getStackTrace()));
