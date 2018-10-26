@@ -21,7 +21,7 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
     MailSendService mailSendService;
     private static final Logger logger = LoggerFactory.getLogger(CustomExceptionResolver.class);
 
-    @Value("${mail}")
+    @Value("${static.mail}")
     private String mail;
 
     @Override
