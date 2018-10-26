@@ -44,7 +44,7 @@ public class AdminController extends BaseController{
 
     @RequestMapping("upload.htm")
     @ResponseBody
-    public String upload(@RequestParam MultipartFile file, String token, String mail, String userId) {
+    public String upload(@RequestParam MultipartFile file, String token, String mail, String userId) throws IOException{
         if (!StringUtils.equals(password, token)) {
             return "密码错误";
         }
@@ -59,11 +59,7 @@ public class AdminController extends BaseController{
             return "file name is null";
         }
         File newFile = new File(fileDirectory, name);
-        try {
-            file.transferTo(newFile);
-        }catch (IOException e) {
-            return e.getMessage();
-        }
+        file.transferTo(newFile);
         String url = domain + name;
         if (StringUtils.isNotBlank(mail)) {
             MailDetailData data = new MailDetailData();

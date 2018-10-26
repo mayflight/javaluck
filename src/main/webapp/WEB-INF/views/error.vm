@@ -5,6 +5,6 @@
     <title>ERROR</title>
 </head>
 <body>
-    <p>sorry,this fail </p>
+    <p>sorry,$!{error} </p>
 </body>
 </html>

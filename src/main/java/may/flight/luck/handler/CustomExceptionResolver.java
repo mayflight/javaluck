@@ -31,6 +31,8 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
         detailData.setContent(JSON.toJSONString(ex.getStackTrace()));
         detailData.setReceiveMailAccount(mail);
         mailSendService.sendSimpleMail(detailData);
-        return super.resolveException(request, response, handler, ex);
+        ModelAndView view = super.resolveException(request, response, handler, ex);
+        view.addObject("error", ex.getLocalizedMessage());
+        return view;
     }
 }
