@@ -17,7 +17,9 @@ public class AdminInterceptor implements HandlerInterceptor{
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("token", "hellow " + request.getParameter("token"));
+        if (modelAndView != null && request != null) {
+            modelAndView.addObject("token", "hello " + request.getParameter("token"));
+        }
     }
 
     @Override
