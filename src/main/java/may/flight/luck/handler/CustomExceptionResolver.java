@@ -14,6 +14,8 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @PropertySource("classpath:system.properties")
 public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
@@ -28,8 +30,8 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         logger.error("custom_error", ex);
         MailDetailData detailData = new MailDetailData();
-        detailData.setSubject(ex.getLocalizedMessage());
-        detailData.setContent(JSON.toJSONString(ex.getStackTrace()));
+        detailData.setSubject(ex.getMessage());
+        detailData.setContent(getDetailError(ex));
         detailData.setReceiveMailAccount(mail);
         BaseResult result = mailSendService.sendSimpleMail(detailData);
         ModelAndView view = super.resolveException(request, response, handler, ex);
@@ -40,5 +42,15 @@ public class CustomExceptionResolver extends SimpleMappingExceptionResolver {
         }
 
         return view;
+    }
+
+    private String getDetailError(Exception e) {
+        if (null == e) {
+            return null;
+        }
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        e.printStackTrace(printWriter);
+        return stringWriter.toString();
     }
 }
