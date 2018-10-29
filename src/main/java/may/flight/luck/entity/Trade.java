@@ -1,5 +1,7 @@
 package may.flight.luck.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,8 +17,10 @@ public class Trade implements Serializable {
 
     private String buyId;
 
+    @JSONField(serialize = false)
     private Date updateTime;
 
+    @JSONField(serialize = false)
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
