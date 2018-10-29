@@ -1,6 +1,4 @@
 package may.flight.luck.handler;
-
-import com.alibaba.fastjson.JSON;
 import com.yadong.ye.bean.BaseResult;
 import com.yadong.ye.bean.MailDetailData;
 import com.yadong.ye.dubbo.MailSendService;
